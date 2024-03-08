@@ -3,6 +3,8 @@ package org.example.demo21.service;
 import org.example.demo21.model.Staff;
 import org.example.demo21.repository.StaffRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,8 +14,8 @@ public class StaffService implements IStaffService{
     @Autowired
     StaffRepo staffRepo;
     @Override
-    public List<Staff> findAll() {
-        return staffRepo.findAll();
+    public Page<Staff> findAll(Pageable pageable) {
+        return staffRepo.findAll(pageable);
     }
 
     @Override

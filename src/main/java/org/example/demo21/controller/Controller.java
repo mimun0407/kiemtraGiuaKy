@@ -3,6 +3,8 @@ package org.example.demo21.controller;
 import org.example.demo21.model.Staff;
 import org.example.demo21.service.IStaffService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,8 +15,8 @@ public class Controller {
     @Autowired
     IStaffService iStudentService;
     @GetMapping
-    public ResponseEntity findAllStudent(){
-        return new ResponseEntity<>(iStudentService.findAll(), HttpStatus.OK);
+    public ResponseEntity findAllStudent(@PageableDefault(value = 1) Pageable pageable){
+        return new ResponseEntity<>(iStudentService.findAll(pageable), HttpStatus.OK);
     }
     @PostMapping
     public ResponseEntity create(@RequestBody Staff staff){
